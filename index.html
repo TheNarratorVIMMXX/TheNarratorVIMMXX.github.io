@@ -1,0 +1,447 @@
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!-- DOCUMENTATION -->
+<!-- Portfolio view -->
+<!-- Last modified: 16/05/2026 -->
+<!-- Author: Magallanes López Carlos Gabriel -->
+<!-- Email: cgmagallanes23@gmail.com -->
+<!-- Project version: 1.0 -->
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>TheNarratorVIMMXX</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com"/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200;300;400;600;700&family=Special+Elite&display=swap" rel="stylesheet"/>
+		<link rel="stylesheet" href="css/styles.css"/>
+		<link rel="icon" href="https://1000logos.net/wp-content/uploads/2020/10/Fight-Club-Logo.png">
+	</head>
+    <body>
+
+		<!-- Canvas for grain and distortion animations -->
+		<canvas id="grain-canvas"></canvas>
+
+		<!-- Film progress bar -->
+		<div id="film-bar">
+			<div id="film-fill"></div>
+		</div>
+		<div id="film-holes"></div>
+
+		<!-- Scratch line -->
+		<div class="scratch-line"></div>
+
+		<!-- Subliminal message (Tyler, 3 frames) -->
+		<div id="subliminal">
+
+			<!-- 
+			SVG for subliminal message
+			M = Move to
+			L = Line to
+			C = Cubic Bezier curve
+			Z = Close path
+			-->
+			<svg viewBox="0 0 120 220" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="60" cy="28" r="22"/>
+				<path d="M60 50 C40 60 30 90 35 130 L85 130 C90 90 80 60 60 50Z"/>  
+				<path d="M35 130 L18 200 L45 200 L60 158 L75 200 L102 200 L85 130Z"/>
+				<path d="M38 75 L8 100 L20 115 L42 95"/>
+				<path d="M82 75 L112 100 L100 115 L78 95"/>
+			</svg>
+		
+		</div>
+
+		<!-- Tyler mode -->
+		<div id="tyler-mode"></div>
+		<div id="tyler-msg">WE ARE<br/>TYLER<br/>DURDEN</div>
+
+		<!-- Navigation -->
+		<nav>
+			<div>
+				
+				<!-- Navigation logo -->
+				<a href="#hero" class="nav-logo" id="nav-logo">THE<em>NARRATOR</em>DEV</a>
+				
+				<!-- Navigation hint -->
+			<span class="nav-hint" data-i18n="navHint">click 3× to meet tyler</span>
+			
+		</div>
+		
+		<!-- Navigation links -->
+		<ul class="nav-links">
+			<li><a href="#about" data-i18n="navAbout">About</a></li>
+			<li><a href="#projects" data-i18n="navWork">Work</a></li>
+			<li><a href="#skills" data-i18n="navStack">Stack</a></li>
+			<li><a href="#contact" data-i18n="navContact">Contact</a></li>
+		</ul>
+	</nav>
+		<!-- Hero section -->
+		<section id="hero">
+			
+			<!-- Description text -->
+			<div class="hero-eyebrow" data-i18n="heroEyebrow">FILE NO. 001 — CARLOS GABRIEL MAGALLANES LÓPEZ · CIUDAD JUÁREZ, MX</div>
+
+			<!-- Main title -->
+			<h1 class="hero-title">
+				<span class="ht-line1" data-t="THE">THE</span>
+				<span class="ht-line2" id="narrator-line">NARRATOR</span>
+				<span class="ht-line3">DEV</span>
+			</h1>
+
+			<!-- Typewriter effect -->
+			<div class="hero-typewriter-wrap">
+				<div class="hero-tw-voice narrator" id="tw-voice">— THE NARRATOR</div>
+				<div class="hero-tw-text" id="tw-text">
+					<span class="tw-cursor"></span>
+				</div>
+			</div>
+
+			<!-- Soap SVG -->
+			<svg class="soap-wrap" id="soap-svg" viewBox="0 0 320 195" xmlns="http://www.w3.org/2000/svg">
+				<rect x="12" y="28" width="296" height="138" rx="22" ry="22" fill="#E88B9F"/>
+				<rect x="20" y="28" width="280" height="14" rx="10" ry="10" fill="rgba(255,200,220,0.5)"/>
+				<ellipse cx="160" cy="97" rx="112" ry="48" fill="rgba(0,0,0,0.12)"/>
+				<text x="160" y="88" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="30" fill="rgba(0,0,0,0.3)" letter-spacing="5">NARRATOR</text>
+				<text x="160" y="112" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" font-weight="300" fill="rgba(0,0,0,0.22)" letter-spacing="8">JUÁREZ · MX · 2026</text>
+				<rect x="12" y="148" width="296" height="18" rx="0" fill="rgba(0,0,0,0.07)"/>
+				<circle cx="28" cy="18" r="9" fill="rgba(255,255,255,0.55)"/>
+				<circle cx="50" cy="8" r="5" fill="rgba(255,255,255,0.4)"/>
+				<circle cx="42" cy="23" r="3.5" fill="rgba(255,255,255,0.45)"/>
+				<circle cx="68" cy="14" r="2.5" fill="rgba(255,255,255,0.3)"/>
+				<circle cx="272" cy="12" r="7" fill="rgba(255,255,255,0.45)"/>
+				<circle cx="288" cy="20" r="4" fill="rgba(255,255,255,0.35)"/>
+				<circle cx="260" cy="6" r="3" fill="rgba(255,255,255,0.3)"/>
+			</svg>
+
+			<!-- Bubble zone (animation) -->
+			<div id="bubble-zone" style="position:absolute;right:5%;top:50%;transform:translateY(-50%);width:310px;height:300px;pointer-events:none;"></div>
+
+			
+			<!-- Bottom text -->
+			<div class="hero-bottom">
+				<div class="hero-rule-txt"><em>RULE 01</em>&nbsp;—&nbsp;<span data-i18n="heroRule">You do not talk about bad code</span></div>
+				<div class="scroll-hint"><span data-i18n="heroScroll">Scroll</span></div>
+			</div>
+		</section>
+
+		<div class="hr"></div>
+
+		<!-- About me -->
+		<section id="about">
+			<div class="about-left fi">
+				
+				<!-- Section tag -->
+			<div class="section-tag" data-i18n="aboutTag">About / Identity</div>
+			
+			<!-- Subtitle -->
+			<h2 class="about-headline" data-i18n-html="aboutHeadline">I am<br/> <span class="acc">Jack's</span><br/>clean code.</h2>
+				<!-- Duality SVG -->
+				<div class="duality-svg-wrap">
+					<svg viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;">
+						<circle cx="85" cy="38" r="24" fill="white" opacity=".92"/>
+						<path d="M85 62 C68 72 58 100 62 138 L108 138 C112 100 102 72 85 62Z" fill="white" opacity=".92"/>
+						<path d="M62 138 L44 200 L75 200 L85 165 L95 200 L126 200 L108 138Z" fill="white" opacity=".92"/>
+						<path d="M65 88 L28 112 L40 128 L68 108" fill="white" opacity=".92"/>
+						<path d="M105 88 L142 112 L130 128 L102 108" fill="white" opacity=".92"/>
+						<line x1="160" y1="0" x2="160" y2="210" stroke="rgba(196,30,10,0.65)" stroke-width="1" stroke-dasharray="5 4"/>
+						<circle cx="235" cy="38" r="24" fill="white" opacity=".15"/>
+						<path d="M235 62 C218 72 208 100 212 138 L258 138 C262 100 252 72 235 62Z" fill="white" opacity=".15"/>
+						<path d="M212 138 L194 200 L225 200 L235 165 L245 200 L276 200 L258 138Z" fill="white" opacity=".15"/>
+						<path d="M215 88 L178 112 L190 128 L218 108" fill="white" opacity=".15"/>
+						<path d="M255 88 L292 112 L280 128 L252 108" fill="white" opacity=".15"/>
+						<text x="85" y="208" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" font-weight="300" fill="rgba(255,255,255,0.28)" letter-spacing="3">THE NARRATOR</text>
+						<text x="235" y="208" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" font-weight="300" fill="rgba(196,30,10,0.55)" letter-spacing="3">TYLER DURDEN</text>
+					</svg>
+				</div>
+
+				<!-- Heartbeat -->
+				<div class="ekg-wrap fi d2" id="ekg-wrap">
+					<span class="ekg-label">VITAL SIGNS — ACTIVE</span>
+					<svg class="ekg-svg" viewBox="0 0 400 60" preserveAspectRatio="none">
+						<path class="ekg-path" id="ekg-path"
+						d="M0,30 L60,30 L75,30 L85,8 L95,52 L105,30 L120,30
+							L175,30 L190,30 L200,5 L210,55 L220,30 L235,30
+							L290,30 L305,30 L315,8 L325,52 L335,30 L350,30 L400,30"/>
+						<circle class="ekg-dot" id="ekg-dot" cx="0" cy="30"/>
+					</svg>
+				</div>
+			</div>
+
+			<!-- About section body -->
+			<div class="about-body fi d2">
+				
+				<!-- Description -->
+			<p class="about-p" data-i18n-html="aboutP1">My name is <strong>Carlos</strong>. I am a Junior Developer based in Ciudad Juárez, México, and I build things that <strong>actually work</strong>.</p>
+			<p class="about-p" data-i18n-html="aboutP2">Strong foundation in <strong>Python</strong> — from backend systems with Django to custom libraries and database design. I write software that prioritizes <strong>UX and well-documented</strong> code, not excuses.</p>
+			<p class="about-p" data-i18n-html="aboutP3">I also make games. <strong>Psychological horror</strong>, space math, optimization tools. Comfortable from high-level architecture down to the low-level control that makes you feel what the machine is doing.</p>
+				<!-- Duality grid -->
+				<div class="duality-grid fi d3">
+
+					<!-- The Narrator -->
+					<div class="duality-col">
+					<div class="dcol-label" data-i18n="narratorLabel">The Narrator</div>
+					<ul class="dcol-list">
+					<li data-i18n="nLi1">Clean architecture</li>
+					<li data-i18n="nLi2">Database design</li>
+					<li data-i18n="nLi3">Documented systems</li>
+					<li data-i18n="nLi4">UX-first APIs</li>
+					<li data-i18n="nLi5">Django backends</li>
+					</ul>
+				</div>
+
+				<!-- Tyler Durden -->
+				<div class="duality-col">
+					<div class="dcol-label" data-i18n="tylerLabel">Tyler Durden</div>
+					<ul class="dcol-list">
+						<li data-i18n="tLi1">Game dev</li>
+						<li data-i18n="tLi2">Pygame · Arcade</li>
+						<li data-i18n="tLi3">C++ control</li>
+						<li data-i18n="tLi4">Data visualization</li>
+						<li data-i18n="tLi5">Break the rules</li>
+					</ul>
+				</div>
+
+				</div>
+			</div>
+
+		</section>
+
+		<div class="hr"></div>
+
+		<!-- Rules -->
+		<section id="rules">
+			
+			<!-- Title -->
+			<div class="rules-bg" data-i18n="rulesBg">RULES</div>
+			
+			<!-- Rules content -->
+			<div class="rules-inner">
+
+				<!-- Header -->
+				<div class="rules-header fi">
+
+<!-- Closed fist SVG -->
+					<div class="fist-wrap" id="fist-wrap">
+						<svg viewBox="0 0 110 90" xmlns="http://www.w3.org/2000/svg">
+						
+							<!-- Fingers -->
+							<rect x="28" y="10" width="13" height="28" rx="6"/>
+							<rect x="44" y="5"  width="13" height="32" rx="6"/>
+							<rect x="60" y="8"  width="13" height="30" rx="6"/>
+							<rect x="76" y="14" width="11" height="24" rx="5"/>
+							
+							<!-- Palm -->
+							<rect x="26" y="32" width="64" height="42" rx="9"/>
+							
+							<!-- Thumb -->
+							<rect x="10" y="42" width="24" height="14" rx="7" transform="rotate(-15 10 42)"/>
+							
+							<!-- Knuckle lines -->
+							<line x1="34" y1="36" x2="34" y2="44" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
+							<line x1="50" y1="34" x2="50" y2="42" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
+							<line x1="66" y1="35" x2="66" y2="43" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
+							<line x1="81" y1="38" x2="81" y2="45" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
+
+						</svg>
+					</div>
+
+					<!-- Rules title -->
+					<div class="rules-title-wrap">
+					<h2 class="rules-title" data-i18n-html="rulesTitle">THE RULES<br/>OF CLEAN CODE</h2>
+<!-- Rules note -->
+				<p class="rules-note" data-i18n="rulesNote">"The things you own end up owning you." Don't let tech debt own you.</p>
+				</div>
+				<div class="rules-grid">
+					<div class="rule-card fi d1">
+						<div class="rule-num">01</div>
+						<p class="rule-body" data-i18n-html="rule1"><strong>You don't ship untested code.</strong> The first rule. The only rule that matters when production is on fire.</p>
+					</div>
+					<div class="rule-card fi d2">
+						<div class="rule-num">02</div>
+						<p class="rule-body" data-i18n-html="rule2"><strong>You don't ship untested code.</strong> Second rule. Yes, same rule. We don't repeat ourselves — except for this.</p>
+					</div>
+					<div class="rule-card fi d3">
+						<div class="rule-num">03</div>
+						<p class="rule-body" data-i18n-html="rule3">If something <strong>breaks in production</strong>, write the postmortem. No exceptions. No silent fixes.</p>
+					</div>
+					<div class="rule-card fi d1">
+						<div class="rule-num">04</div>
+						<p class="rule-body" data-i18n-html="rule4">The user remembers the <strong>failure</strong> much longer than you do.</p>						
+					</div>
+					<div class="rule-card fi d2">
+						<div class="rule-num">05</div>
+						<p class="rule-body" data-i18n-html="rule5"><strong>One problem</strong> at a time. Context switching is the enemy of flow state. Guard it like soap.</p>
+					</div>
+					<div class="rule-card fi d3">
+						<div class="rule-num">06</div>
+						<p class="rule-body" data-i18n-html="rule6">The code <strong>has to work</strong>. "I'll refactor later" is a lie developers tell themselves. Ship it right.</p>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!-- Projects -->
+		<section id="projects">
+			
+			<!-- Projects header -->
+			<div class="sec-head fi">
+				<h2 class="scramble-title" data-original="CASE FILES" data-i18n="caseFiles">CASE FILES</h2>
+				<div class="sec-meta" data-i18n-html="projMeta">06 PROJECTS<br/>CLASSIFIED · GITHUB</div>
+			</div>
+
+			<!-- Projects grid -->
+			<div class="proj-grid">
+				
+				<!-- Zhyniria -->
+				<a href="https://github.com/TheNarratorVIMMXX/Zhyniria" target="_blank" class="proj-card span2 fi d1">
+					<div class="specular"></div>
+					<div class="card-top"><span class="card-file">FILE — 001</span><span class="card-status" data-i18n="statusHigh">PRIORITY: HIGH</span></div>
+					<div class="card-name">ZHYNIRIA</div>
+					<p class="card-desc" data-i18n="p1Desc">A text-based psychological horror adventure set in the Tower of Dreams. Four chapters. Intricate puzzles. Anxiety management systems. Crucial decisions with real consequences. Build the rules — then watch them break.</p>
+					<div class="card-tags"><span class="tag">Python</span><span class="tag">CSS</span><span class="tag">Narrative Design</span><span class="tag">Game Dev</span><span class="tag">Horror</span></div>
+					<span class="card-arrow">↗</span>
+				</a>
+
+				<!-- Parking Payment System -->
+				<a href="https://github.com/TheNarratorVIMMXX/ParkingPaymentSystem" target="_blank" class="proj-card fi d2">
+					<div class="specular"></div>
+					<div class="card-top"><span class="card-file">FILE — 002</span><span class="card-status" data-i18n="statusSystems">SYSTEMS</span></div>
+					<div class="card-name">PARKING PAYMENT SYSTEM</div>
+					<p class="card-desc" data-i18n="p2Desc">Fictitious parking system simulating hourly usage tracking and billing calculations with fixed pricing logic. Structured. Clean.</p>
+					<div class="card-tags"><span class="tag">Papyrus</span><span class="tag">Systems Design</span></div>
+					<span class="card-arrow">↗</span>
+				</a>
+
+				<!-- EduMath -->
+				<a href="https://github.com/TheNarratorVIMMXX/EduMath" target="_blank" class="proj-card fi d1">
+				<div class="specular"></div>
+				<div class="card-top"><span class="card-file">FILE — 003</span><span class="card-status" data-i18n="statusEducation">EDUCATION</span></div>
+				<div class="card-name">EDUMATH</div>
+				<p class="card-desc" data-i18n="p3Desc">Educational math game for kids (grades 1–6). Space theme. Adjustable difficulty, interactive gameplay, animations.</p>
+				<div class="card-tags"><span class="tag">CSS</span><span class="tag">Game Design</span><span class="tag">UX</span></div>
+				<span class="card-arrow">↗</span>
+				</a>
+
+				<!-- GeoFrame -->
+				<a href="https://github.com/TheNarratorVIMMXX/GeoFrame" target="_blank" class="proj-card fi d2">
+				<div class="specular"></div>
+				<div class="card-top"><span class="card-file">FILE — 004</span><span class="card-status" data-i18n="statusMathUx">MATH / UX</span></div>
+				<div class="card-name">GEOFRAME</div>
+				<p class="card-desc" data-i18n="p4Desc">Interactive app to calculate optimal dimensions of a Norman window maximizing area under a perimeter constraint. Calculus meets clean interface.</p>
+				<div class="card-tags"><span class="tag">CSS</span><span class="tag">Math</span><span class="tag">Optimization</span></div>
+				<span class="card-arrow">↗</span>
+				</a>
+
+				<!-- Python Tkinter -->
+				<a href="https://github.com/TheNarratorVIMMXX/PythonTkinter" target="_blank" class="proj-card fi d3">
+				<div class="specular"></div>
+				<div class="card-top"><span class="card-file">FILE — 005</span><span class="card-status" data-i18n="statusGui">GUI</span></div>
+				<div class="card-name">PYTHON TKINTER</div>
+				<p class="card-desc" data-i18n="p5Desc">GUI exercises in Python using the native Tkinter library. Desktop app development, event-driven architecture.</p>
+				<div class="card-tags"><span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">GUI</span></div>
+				<span class="card-arrow">↗</span>
+				</a>
+
+				<!-- More Files -->
+				<a href="https://github.com/TheNarratorVIMMXX" target="_blank" class="proj-more fi d4">
+					<div class="proj-more-label" data-i18n="moreLabel">MORE FILES</div>
+					<div class="proj-more-arrow">→</div>
+					<div class="proj-more-sub" data-i18n="moreSub">GITHUB ARCHIVE</div>
+				</a>
+			</div>
+		</section>
+
+		<!-- Skills -->
+		<section id="skills">
+			<div class="skills-inner">
+				
+				<!-- Skills header -->
+				<div class="sec-head fi">
+					<h2 class="scramble-title" data-original="THE ARSENAL" data-i18n="arsenalTitle">THE ARSENAL</h2>
+					<div class="sec-meta" data-i18n-html="skillsMeta">WEAPONS<br/>OF CHOICE</div>
+				</div>
+				<!-- Skills grid -->
+				<div class="skills-grid">
+					<div class="sk-group fi d1">
+						<div class="sk-title" data-i18n-html="skillTitleFrontend">FRONTEND <span class="sk-title-num">03</span></div>
+						<ul class="sk-list">
+							<li class="sk-item"><span class="sk-dot"></span>HTML5</li>
+							<li class="sk-item"><span class="sk-dot"></span>CSS3</li>
+							<li class="sk-item"><span class="sk-dot"></span>JavaScript</li>
+						</ul>
+					</div>
+					<div class="sk-group fi d2">
+						<div class="sk-title" data-i18n-html="skillTitleBackend">BACKEND <span class="sk-title-num">03</span></div>
+						<ul class="sk-list">
+							<li class="sk-item"><span class="sk-dot"></span>Python</li>
+							<li class="sk-item"><span class="sk-dot"></span>Django</li>
+							<li class="sk-item"><span class="sk-dot"></span>C++</li>
+						</ul>
+					</div>
+					<div class="sk-group fi d3">
+						<div class="sk-title" data-i18n-html="skillTitleGameDev">GAME DEV <span class="sk-title-num">03</span></div>
+						<ul class="sk-list">
+							<li class="sk-item"><span class="sk-dot"></span>Pygame</li>
+							<li class="sk-item"><span class="sk-dot"></span>Arcade Library</li>
+							<li class="sk-item"><span class="sk-dot"></span>Logic & Systems Design</li>
+						</ul>
+					</div>
+					<div class="sk-group fi d1">
+						<div class="sk-title" data-i18n-html="skillTitleDatabases">DATABASES <span class="sk-title-num">03</span></div>
+						<ul class="sk-list">
+							<li class="sk-item"><span class="sk-dot"></span>MySQL</li>
+							<li class="sk-item"><span class="sk-dot"></span>SQLite</li>
+							<li class="sk-item"><span class="sk-dot"></span>MongoDB</li>
+						</ul>
+					</div>
+					<div class="sk-group fi d2">
+						<div class="sk-title" data-i18n-html="skillTitleVisualization">VISUALIZATION <span class="sk-title-num">02</span></div>
+						<ul class="sk-list">
+							<li class="sk-item"><span class="sk-dot"></span>Matplotlib</li>
+							<li class="sk-item"><span class="sk-dot"></span>Seaborn</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact -->
+		<section id="contact">
+			
+			<!-- Title -->
+			<div class="ct-bg" data-i18n="contactFind">FIND</div>
+			
+			<!-- Contact content -->
+			<div class="ct-inner">
+
+				<!-- Header -->
+			<p class="ct-epigraph fi" data-i18n="ctEpigraph">"The things you own end up owning you." — except your portfolio.</p>
+			<h2 class="ct-title fi d1" data-i18n-html="ctTitle">LET'S<br/><span class="red">WORK.</span></h2>
+			<p class="ct-subtitle fi d2" data-i18n="ctSubtitle">Open to collaborations · Ciudad Juárez, MX</p>
+				<!-- Contact links -->
+				<div class="ct-links fi d3">
+					<a href="mailto:cgmagallanes23@gmail.com" class="ct-link">Gmail</a>
+					<a href="https://linkedin.com/in/carlos-gabriel-magallanes-lopez-940179398" target="_blank" class="ct-link">LinkedIn</a>
+					<a href="https://github.com/TheNarratorVIMMXX" target="_blank" class="ct-link">GitHub</a>
+				</div>
+
+			</div>
+		
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<span class="ft-text" data-i18n-html="ftLeft">© 2026 <em>TheNarratorDev</em> — Carlos Gabriel Magallanes López</span>
+			<span class="ft-text" data-i18n="ftRight">Ciudad Juárez, Chihuahua · <em>MX</em></span>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="js/script.js"></script>
+
+	</body>
+</html>
+			 
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->

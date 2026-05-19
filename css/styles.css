@@ -1,0 +1,1415 @@
+/*****************************************************************************************************************************************************************************/
+/*                                                                                                                                                                           */
+/*                                                                  Portfolio Project Styles                                                                                 */
+/*                                                                                                                                                                           */
+/*****************************************************************************************************************************************************************************/
+/*                                                                                                                                                                           */
+/* Author: Magallanes López Carlos Gabriel                                                                                                                                   */
+/* Version: 1.0                                                                                                                                                              */
+/* Email: cgmagallanes23@gmail.com                                                                                                                                           */
+/* Last Modified: 19/05/2026                                                                                                                                                 */
+/*                                                                                                                                                                           */
+/*****************************************************************************************************************************************************************************/
+
+/* Universal reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Colors and global theme */
+:root {
+    --black: #070707;
+    --off-white: #F0EBE1;
+    --red: #C41E0A;
+    --g1: #101010;
+    --g2: #1c1c1c;
+    --g3: #2f2f2f;
+    --g4: #777;
+}
+
+/* HTML - Soft scroll Behavior */
+html {scroll-behavior: smooth;}
+
+/* Body */
+body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'Special Elite', cursive;
+    overflow-x: hidden;                                                                            /* Prevent Horizontal Scroll */
+    cursor: crosshair;                                                                             /* Crosshair Cursor */
+}
+
+/* Grain Canvas */
+#grain-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;                                                                          /* Allow Clicks to Pass Through */ 
+    z-index: 9999; 
+    opacity: .055;
+    mix-blend-mode: screen;                                                                        /* Blend Mode Allows for Unique Visual Effects */
+}
+
+/* Progress Bar */
+#film-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 9998;
+    background: var(--g2);
+    overflow-x: hidden;                                                                            /* Prevent Horizontal Scroll */
+}
+
+/* Fill of the Progress Bar */
+#film-fill {
+    height: 100%;
+    background: var(--red);
+    width: 0%;
+    transition: width 0.05s linear;                                                                /* Linear Width Transition */
+}
+
+/* Sprocket Holes */
+#film-holes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 9997;
+    display: flex;
+    gap: 18px;
+    padding: 0 6px;
+    align-items: center;
+    pointer-events: none;                                                                          /* Allow Clicks to Pass Through */ 
+}
+
+/* Individual Srocket Hole */
+.hole {
+    width: 4px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+/* Scratch Line */
+.scratch-line {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, .7);
+    pointer-events: none;                                                                          /* Allow Clicks to Pass Through */ 
+    z-index: 9996;
+    opacity: 0;
+    animation: scratchy 14s infinite;                                                              /* Infinite Scratchy Animation */ 
+}
+
+/* Scratch Animation */
+@keyframes scratchy {
+    0%, 88%, 100% {opacity: 0; top: 0%;}
+    89% {opacity: 0.55; top: 28%;}
+    89.5% {opacity: 0; top: 28%;}
+    91% {opacity: 0.3; top: 62%;}
+    91.5% {opacity: 0;}
+}
+
+/* Subliminal Message */
+#subliminal {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;                                                                          /* Allow Clicks to Pass Through */ 
+    z-index: 9995;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Subliminal Message SVG */
+#subliminal svg {
+    width: 180px;
+    height: auto;
+    fill: white;
+    opacity: 0.85;
+}
+
+/* Overlay rojo cuando Tyler toma el control */
+#tyler-mode {
+    position: fixed;
+    inset: 0;
+    z-index: 9994;
+    pointer-events: none;                                                                          /* Allow Clicks to Pass Through */ 
+    opacity: 0;
+    background: var(--red);
+    mix-blend-mode: multiply;
+    transition: opacity 0.15s;                                                                     /* Opacity Transition */
+}
+
+/* Tyler Message */
+#tyler-msg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9993;
+    pointer-events: none;                                                                          /* Allow Clicks to Pass Through */ 
+    opacity: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    color: white;
+    letter-spacing: .1em;
+    text-align: center;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+}
+
+/* States when Tyler is active */
+body.tyler-active #tyler-mode {opacity: 0.55;}                                                     /* Tyler Mode */                    
+body.tyler-active #tyler-msg {opacity: 1;}                                                         /* Tyler Message */
+body.tyler-active nav {background: rgba(196, 30, 10, 0.3);}                                      /* Nav */
+
+/* Fade-In */
+.fi {
+    opacity: 0;
+    transform: translateY(45px);
+    transition: opacity 1s ease, transform 1s ease;                                  
+}
+
+/* Fade-In Delay Animations */
+.fi.d1 {transition-delay: 0.1s;}                                                         /* Delay 1 */
+.fi.d2 {transition-delay: 0.25s;}                                                        /* Delay 2 */
+.fi.d3 {transition-delay: 0.4s;}                                                         /* Delay 3 */
+.fi.d4 {transition-delay: 0.6s;}                                                         /* Delay 4 */
+
+/* Visible State of the Fade-In */
+.fi.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade-Up Animation */
+@keyframes fadeUp {
+    from {opacity: 0; transform: translateY(35px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 4.5rem;
+    background: linear-gradient(to bottom, rgba(7, 7, 7, 0.96), transparent);
+}
+
+/* Navigation Logo */
+.nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: .12em;
+    color: var(--off-white);
+    text-decoration: none;
+    cursor: crosshair;                                                                             /* Crosshair Cursor */
+    user-select: none;
+}
+
+/* HTML Element 'em' of the Navigation Logo */
+.nav-logo em {
+    color: var(--red);
+    font-style: normal;
+}
+
+/* Hint Navigation */
+.nav-hint {
+    font-family: 'Oswald', sans-serif;
+    font-size: .5rem;
+    font-weight: 300;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--g3);
+    margin-top: .15rem;
+    display: block;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+/* Individual Navigation Link*/
+.nav-links a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--g4);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+/* Hover of the Navigation Link */
+.nav-links a:hover {color: var(--off-white);}
+
+/* Hero */
+#hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4.5rem;
+    overflow: hidden;
+}
+
+/* Hero Eyebrow */
+.hero-eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.9s ease 0.3s both;                                                         /* Fade Up Animation */
+}
+
+/* Hero Title */
+.hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5.5rem, 13.5vw, 14rem);
+    line-height: .88;
+    position: relative;
+    z-index: 2;
+    user-select: none;
+}
+
+/* First Line of the Title */
+.ht-line1 {
+    display: block;
+    animation: fadeUp 0.9s ease 0.55s both;                                                        /* Fade Up Animation */
+    position: relative;
+}
+
+/* Second Line of the Title */
+.ht-line2 {
+    display: block;
+    padding-left: 9vw;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--off-white);
+    animation: fadeUp 0.9s ease 0.75s both;                                                        /* Fade Up Animation */
+    transition: color 0.3s, -webkit-text-stroke 0.3s;
+}
+
+/* Third Line of the Title */
+.ht-line3 {
+    display: block;
+    padding-left: 3vw;
+    color: var(--red);
+    animation: fadeUp 0.9s ease 0.95s both;                                                        /* Fade Up Animation */
+}
+
+/* First Line of the Title Pseudoelements */
+.ht-line1::before, .ht-line1::after {
+    content: attr(data-t);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* First Layer of the First Line of the Title */
+.ht-line1::before {
+    color: var(--red);
+    animation: glitch 9s 2s infinite;
+    opacity: 0.4;
+}
+
+/* Second Layer of the First Line of the Title */
+.ht-line1::after {
+    color: #4af;
+    animation: glitch 9s 2.15s infinite;
+    opacity: 0.25;
+}
+
+/* Glitch Animation */
+@keyframes glitch {
+    0%, 92%, 100% {clip-path: none; transform: none;}
+    93% {clip-path: polygon(0 15%, 100% 15%, 100% 22%, 0 22%); transform: translateX(-6px);}
+    94% {clip-path: polygon(0 58%, 100% 58%, 100% 63%, 0 63%); transform: translateX(5px);}
+    95% {clip-path: polygon(0 38%, 100% 38%, 100% 40%, 0 40%); transform: translateX(-3px);}
+    96% {clip-path: none;transform: none;}
+}
+
+/* Typewriter Container */
+.hero-typewriter-wrap {
+    margin-top: 2.8rem;
+    max-width: 460px;
+    animation: fadeUp 0.9s ease 1.2s both;                                                         /* Fade Up Animation */
+    min-height: 80px;
+}
+
+/* Voice Label */
+.hero-tw-voice {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+
+/* Voices */
+.hero-tw-voice.narrator {color: var(--g4);}                                                        /* Narrator */
+.hero-tw-voice.tyler {color: var(--red);}                                                          /* Tyler */
+
+/* Typewriter Text */
+.hero-tw-text {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: var(--g4);
+}
+
+/* Important Text of the Typewritter*/
+.hero-tw-text strong {
+    color: var(--off-white);
+    font-weight: normal;
+}
+
+/* Typewriter Cursor */
+.tw-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--red);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 0.75s step-end infinite;
+}
+
+/* Cursor Blink Animation */
+@keyframes blink {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0;}
+}
+
+/* Soap Container */
+.soap-wrap {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 310px;
+    opacity: 0.11;
+    animation: fadeUp 1.2s ease 1.4s both;                                                         /* Fade Up Animation */
+    will-change: transform;
+}
+
+/* Hero Bottom */
+.hero-bottom {
+    position: absolute;
+    bottom: 2.8rem;
+    left: 4.5rem;
+    right: 4.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    animation: fadeUp 0.9s ease 1.6s both;                                                         /* Fade Up Animation */
+}
+
+/* Rules Text in the Hero */
+.hero-rule-txt {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--g3);
+}
+
+/* Emphasis of the Rules Text in the Hero */
+.hero-rule-txt em {
+    color: var(--red);
+    font-style: normal;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* ScrollHint Text */
+.scroll-hint span {
+    font-family: 'Oswald', sans-serif;
+    font-size: .58rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--g3);
+    writing-mode: vertical-rl;
+}
+
+/* First Layer of the Scroll Hint */
+.scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 55px;
+    background: linear-gradient(to bottom, var(--g3), transparent);
+    animation: scl 2.2s ease infinite;                                                             /* Infinite SCL Animation */
+}
+
+/* Scroll Hint Animation */
+@keyframes scl {
+    0% {opacity: 0; transform: scaleY(0); transform-origin: top;}
+    50% {opacity: 1;}
+    100% {opacity: 0; transform: scaleY(1); transform-origin: top;}
+}
+
+/* Divider */
+.hr{
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--g3) 30%, var(--g3) 70%, transparent)
+}
+
+/* Tag Section */
+.section-tag{
+    display:flex;
+    align-items:center;
+    gap: 1rem;
+    font-family:'Oswald',sans-serif;
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 2.2rem
+}
+
+/* Pseudoelement of the Section Tag*/
+.section-tag::before{
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--red);
+    flex-shrink: 0
+}
+
+/* Scramble Title */
+.scramble-title{
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: clamp(3.5rem,7vw,7rem);
+    line-height: 0.92;
+    color: var(--off-white)
+}
+
+/* Characters that are still randomizing */
+.scramble-title .sc-char.scrambling{color: var(--red); opacity:.6}                                 /* Scrambling Chars */
+.scramble-title .sc-char.resolved{color: var(--off-white)}                                         /* Resolved Chars*/
+
+
+/* About Container */
+#about {
+    padding: 9rem 4.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;                                                           
+    gap: 7rem;
+    align-items: start;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* About Headline */
+.about-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 5.5rem);
+    line-height: 1;
+    color: var(--off-white);
+    margin-bottom: 2rem;
+}
+
+/* Accent Color in About Headline */
+.about-headline .acc {color: var(--red);}
+
+/* Duality SVG Wrapper */
+.duality-svg-wrap {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--g2);
+    padding-top: 2rem;
+}
+
+/* EKG Wrapper */
+.ekg-wrap {
+    margin-top: 2.5rem;
+    position: relative;
+    height: 70px;
+}
+
+/* EKG Label */
+.ekg-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--red);
+    opacity: 0.7;
+}
+
+/* EKG SVG Container */
+.ekg-svg {
+    width: 100%;
+    height: 70px;
+    overflow: visible;
+}
+
+/* EKG Path Animation */
+.ekg-path {
+    stroke: var(--red);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    transition: stroke-dashoffset 0s;
+}
+
+/* EKG Path Animating State */
+.ekg-path.animating {
+    transition: stroke-dashoffset 2s ease;
+}
+
+/* EKG Dot Indicator */
+.ekg-dot {
+    fill: var(--red);
+    r: 3;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* About Paragraph */
+.about-p {
+    font-family: 'Special Elite', cursive;
+    font-size: .92rem;
+    line-height: 2.05;
+    color: var(--g4);
+    margin-bottom: 1.4rem;
+}
+
+/* About Paragraph Strong Text */
+.about-p strong {
+    color: var(--off-white);
+    font-weight: normal;
+}
+
+/* Duality Grid Container */
+.duality-grid {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--g3);
+}
+
+/* Duality Grid Column */
+.duality-col {padding: 1.6rem 1.4rem;}
+
+/* Duality First Column Border */
+.duality-col:first-child {border-right: 1px solid var(--g3);}
+
+/* Duality Column Label */
+.dcol-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+}
+
+/* Duality Column List */
+.dcol-list {list-style: none;}
+
+/* Duality List Item */
+.dcol-list li {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--g4);
+    padding: .35rem 0;
+    border-bottom: 1px solid var(--g2);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* Duality List Item Dot Marker */
+.dcol-list li::before {
+    content: '';
+    width: 3px;
+    height: 3px;
+    background: var(--red);
+    flex-shrink: 0;
+}
+
+/* Last Duality List Item */
+.dcol-list li:last-child {border-bottom: none;}
+
+/* Rules Container */
+#rules {
+    padding: 7rem 4.5rem;
+    background: var(--g1);
+    position: relative;
+    overflow: hidden;                                                                              /* Prevent Horizontal Scroll */
+}
+
+/* Rules Background Text */
+.rules-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22vw;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--g2);
+    white-space: nowrap;
+    pointer-events: none;                                                                          /* Allow Clicks to Pass Through */ 
+    user-select: none;
+}
+
+/* Rules Inner Container */
+.rules-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Rules Header */
+.rules-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    gap: 2rem;
+}
+
+/* Fist Wrapper */
+.fist-wrap {
+    flex-shrink: 0;
+    width: 80px;
+    opacity: 0.85;
+}
+
+/* Fist SVG */
+.fist-wrap svg {
+    width: 80px;
+    height: auto;
+    fill: var(--off-white);
+    transform: translateX(-80px);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1.2), opacity 0.4s ease;
+}
+
+/* Fist Punched State */
+.fist-wrap.punched svg {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Fist Punch Vibrate Animation */
+@keyframes punchVibrate {
+    0%, 100% {transform: translateX(0) rotate(0deg);}
+    20% {transform: translateX(4px) rotate(1deg);}
+    40% {transform: translateX(-3px) rotate(-1deg);}
+    60% {transform: translateX(2px);}
+    80% {transform: translateX(-1px);}
+}
+
+/* Fist Vibrate State */
+.fist-wrap.vibrate svg {
+    animation: punchVibrate .3s ease;
+}
+
+/* Rules Title */
+.rules-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 4.5rem);
+    color: var(--off-white);
+    line-height: 1;
+}
+
+/* Rules Note */
+.rules-note {
+    font-family: 'Special Elite', cursive;
+    font-size: .78rem;
+    color: var(--g4);
+    font-style: italic;
+    max-width: 220px;
+    text-align: right;
+    align-self: flex-end;
+}
+
+/* Rules Grid */
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+
+/* Rule Card */
+.rule-card {
+    background: var(--black);
+    padding: 2.2rem 1.8rem;
+    position: relative;
+    overflow: hidden;                                                                              /* Prevent Horizontal Scroll */
+    transition: background 0.35s;
+}
+
+/* Rule Card Hover State */
+.rule-card:hover {background: var(--g2);}
+
+/* Rule Card Bottom Border Animation */
+.rule-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;                                                               /* Transform transition */
+}
+
+/* Rule Card Hover Border Animation */
+.rule-card:hover::after {transform: scaleX(1);}
+
+/* Rule Number */
+.rule-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--red);
+    opacity: .22;
+    margin-bottom: 0.6rem;
+}
+
+/* Rule Body Text */
+.rule-body {
+    font-family: 'Oswald', sans-serif;
+    font-size: .82rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--g4);
+}
+
+/* Rule Body Strong Text */
+.rule-body strong {
+    color: var(--off-white);
+    font-weight: 600;
+}
+
+/* Projects Container */
+#projects {
+    padding: 9rem 4.5rem;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* Section Header */
+.sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+}
+
+/* Section Metadata */
+.sec-meta {
+    font-family: 'Oswald', sans-serif;
+    font-size: .65rem;
+    font-weight: 300;
+    letter-spacing: .3em;
+    color: var(--g4);
+    text-align: right;
+    line-height: 1.8;
+}
+
+/* Projects Grid */
+.proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+
+/* Project Card 3D Tilt */
+.proj-card {
+    position: relative;
+    background: var(--g1);
+    padding: 2.4rem 2rem;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    transform-style: preserve-3d;
+    perspective: 800px;
+    transition: background 0.4s, transform 0.2s ease, box-shadow 0.4s;
+}
+
+/* Project Card Top Border Animation */
+.proj-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s ease;                                     
+}
+
+/* Project Card Hover State */
+.proj-card:hover {background: var(--g2);}
+
+/* Project Card Hover Top Border */
+.proj-card:hover::before {transform: scaleX(1);}
+
+/* Project Card Specular Light Dot */
+.proj-card .specular {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, .07) 0%, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Project Card Hover Specular Light */
+.proj-card:hover .specular {opacity: 1;}
+
+/* Project Card Span 2 Columns */
+.proj-card.span2 {
+    grid-column: span 2;
+}
+
+/* Project Card Top Section */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.6rem;
+}
+
+/* Project Card File Label */
+.card-file {
+    font-family: 'Oswald', sans-serif;
+    font-size: .58rem;
+    font-weight: 300;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--red);
+}
+
+/* Project Card Status Badge */
+.card-status {
+    font-family: 'Oswald', sans-serif;
+    font-size: .55rem;
+    font-weight: 300;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--g3);
+    border: 1px solid var(--g3);
+    padding: .15rem .5rem;
+}
+
+/* Project Card Name */
+.card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    line-height: 1.05;
+    color: var(--off-white);
+    margin-bottom: .9rem;
+}
+
+/* Project Card Span 2 Name */
+.proj-card.span2 .card-name {
+    font-size: 2.6rem;
+}
+
+/* Project Card Description */
+.card-desc {
+    font-family: 'Special Elite', cursive;
+    font-size: .8rem;
+    line-height: 1.8;
+    color: var(--g4);
+    margin-bottom: 2rem;
+}
+
+/* Project Card Tags Container */
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;                                                                               
+    gap: 0.4rem;
+}
+
+/* Individual Tag */
+.tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: .55rem;
+    font-weight: 300;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: .25rem .65rem;
+    border: 1px solid var(--g3);
+    color: var(--g4);
+    transition: border-color .3s, color .3s;
+}
+
+/* Project Card Hover Tag State */
+.proj-card:hover .tag {
+    border-color: var(--g4);
+    color: var(--off-white);
+}
+
+/* Project Card Arrow */
+.card-arrow {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 1rem;
+    color: var(--g3);
+    transition: color 0.3s, transform 0.3s;
+}
+
+/* Project Card Hover Arrow */
+.proj-card:hover .card-arrow {
+    color: var(--red);
+    transform: translate(4px, -4px);
+}
+
+/* Projects More Card */
+.proj-more {
+    background: var(--black);
+    border: 1px solid var(--g2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    transition: border-color .3s, background .3s;
+    min-height: 240px;
+}
+
+/* Projects More Card Hover State */
+.proj-more:hover {
+    border-color: var(--red);
+    background: var(--g1);
+}
+
+/* Projects More Label */
+.proj-more-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: .9rem;
+    letter-spacing: .25em;
+    color: var(--g3);
+    transition: color .3s;
+}
+
+/* Projects More Hover Label */
+.proj-more:hover .proj-more-label {color: var(--off-white);}
+
+/* Projects More Arrow */
+.proj-more-arrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--red);
+}
+
+/* Projects More Subtitle */
+.proj-more-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: .6rem;
+    letter-spacing: .35em;
+    font-weight: 300;
+    color: var(--g3);
+}
+
+/* Skills Container */
+#skills {
+    padding: 9rem 4.5rem;
+    background: var(--g1);
+}
+
+/* Skills Inner Container */
+.skills-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* Skills Grid */
+.skills-grid {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);                                                         /* Defines the number and width of grid columns */                                               
+    gap: 2px;
+}
+
+/* Skills Group Card */
+.sk-group {
+    background: var(--black);
+    padding: 2.4rem 2rem;
+    transition: background 0.3s;
+}
+
+/* Skills Group Hover State */
+.sk-group:hover {background: var(--g2);}
+
+/* Skills Group Title */
+.sk-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: .08em;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--g2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Skills Title Number */
+.sk-title-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: .6rem;
+    font-weight: 300;
+    color: var(--red);
+    letter-spacing: 0.2em;
+}
+
+/* Skills List */
+.sk-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/* Skills List Item */
+.sk-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--g4);
+    transition: color 0.3s, transform 0.2s;
+}
+
+/* Skills Group Hover Item */
+.sk-group:hover .sk-item {
+    color: var(--off-white);
+}
+
+/* Skills Group Hover Item 1st Child */
+.sk-group:hover .sk-item:nth-child(1) {
+    transform: translateX(4px);
+}
+
+/* Skills Group Hover Item 2nd Child */
+.sk-group:hover .sk-item:nth-child(2) {
+    transform: translateX(4px);
+    transition-delay: .05s;
+}
+
+/* Skills Group Hover Item 3rd Child */
+.sk-group:hover .sk-item:nth-child(3) {
+    transform: translateX(4px);
+    transition-delay: 0.1s;
+}
+
+/* Skills Group Hover Item 4th Child */
+.sk-group:hover .sk-item:nth-child(4) {
+    transform: translateX(4px);
+    transition-delay: 0.15s;
+}
+
+/* Skills Dot Marker */
+.sk-dot {
+    width: 3px;
+    height: 3px;
+    background: var(--red);
+    flex-shrink: 0;                                                                                /* Prevent Shrinking of the Dot */
+}
+
+/* Contact Container */
+#contact {
+    padding: 11rem 4.5rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Contact Background Text */
+.ct-bg { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22vw;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--g2);                                                            /* Outline Text */
+    white-space: nowrap;                                                                           /* Prevent Text Wrapping */
+    pointer-events: none;
+    user-select: none;                                                                             /* Prevent Text Selection */
+}
+
+/* Contact Inner Container */
+.ct-inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* Contact Epigraph */
+.ct-epigraph {
+    font-family: 'Special Elite', cursive;
+    font-size: .88rem;
+    color: var(--g4);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+/* Contact Title */
+.ct-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 10rem);
+    line-height: .88;
+    color: var(--off-white);
+    margin-bottom: 1rem;
+}
+
+/* Contact Title Red Accent */
+.ct-title .red {color: var(--red);}
+
+/* Contact Subtitle */
+.ct-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: .7rem;
+    font-weight: 300;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--g4);
+    margin-bottom: 3.5rem;
+}
+
+/* Contact Links Container */
+.ct-links {
+    display: flex;
+    justify-content: center;
+    gap: 3.5rem;
+    flex-wrap: wrap;                                                                               /* Flex-Wrap for smaller screens */
+}
+
+/* Contact Link */
+.ct-link {
+    font-family: 'Oswald', sans-serif;
+    font-size: .75rem;
+    font-weight: 300;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--g4);
+    text-decoration: none;
+    position: relative;
+    transition: color .3s;
+    padding-bottom: 4px;
+}
+
+/* Contact Link Bottom Border Animation */
+.ct-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+}
+
+/* Contact Link Hover State */
+.ct-link:hover {color: var(--off-white);}
+
+/* Contact Link Hover Border Animation */
+.ct-link:hover::after {transform: scaleX(1);}
+
+/* Footer */
+footer {
+    padding: 1.8rem 4.5rem;
+    background: var(--g1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--g2);
+}
+
+/* Footer Text */
+.ft-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: .62rem;
+    font-weight: 300;
+    letter-spacing: .2em;
+    color: var(--g3);
+}
+
+/* Footer Text Emphasis */
+.ft-text em {
+    color: var(--red);
+    font-style: normal;
+}
+
+/* Split Reveal Container */
+.split-reveal {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Split Top and Bottom */
+.split-top, .split-bottom {
+    display: block;   
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);                                      /* Transition for the split reveal */
+}
+
+/* Split Top Hidden State */
+.split-top {transform: translateY(-100%);}
+
+/* Split Bottom Hidden State */
+.split-bottom {transform: translateY(100%);}
+
+/* Split Revealed Top and Bottom */
+.split-reveal.revealed .split-top, .split-reveal.revealed .split-bottom {
+    transform: translateY(0);
+}
+
+/* Language Toggle Button */
+#langToggleBtn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9990;
+    background: transparent;
+    color: var(--off-white);
+    border: 1px solid var(--g3);
+    padding: 10px 18px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    cursor: crosshair;
+    transition: all 0.2s;
+}
+
+/* Language Toggle Button Hover State */
+#langToggleBtn:hover {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+/* Responsive Deign */
+@media (max-width: 960px) {
+
+    /* Navigation Responsive */
+    nav {padding: 1.2rem 2rem;}
+
+    /* Navigation Links Hidden */
+    .nav-links {display: none;}
+
+    /* Hero Responsive */
+    #hero {padding: 0 2rem;}
+
+    /* Soap Hidden on Mobile */
+    .soap-wrap {display: none;}
+
+    /* About Responsive */
+    #about {grid-template-columns: 1fr; padding: 5rem 2rem;gap: 3rem;}
+
+    /* Rules Responsive */
+    #rules {padding: 5rem 2rem;}
+
+    /* Rules Grid Single Column */
+    .rules-grid {grid-template-columns: 1fr;}
+
+    /* Rules Header Responsive */
+    .rules-header {flex-direction: column; align-items: flex-start;}
+
+    /* Rules Note Responsive */
+    .rules-note {text-align: left;}
+
+    /* Projects Responsive */
+    #projects {padding: 5rem 2rem;}
+
+    /* Projects Grid Single Column */
+    .proj-grid {grid-template-columns: 1fr;}
+
+    /* Project Card Span 2 Responsive */
+    .proj-card.span2 {grid-column: 1;}
+
+    /* Project Card Span 2 Name Responsive */
+    .proj-card.span2 .card-name {font-size: 1.9rem;}
+
+    /* Skills Responsive */
+    #skills {padding: 5rem 2rem;}
+
+    /* Skills Grid Single Column */
+    .skills-grid {grid-template-columns: 1fr;}
+
+    /* Contact Responsive */
+    #contact {padding: 7rem 2rem;}
+
+    /* Footer Responsive */
+    footer {padding: 1.5rem 2rem;}
+
+    /* Language Toggle Button Responsive */
+    #langToggleBtn {
+        bottom: 16px;
+        right: 16px;
+        padding: 8px 14px;
+        font-size: 0.55rem;
+    }
+
+}
+
+/*****************************************************************************************************************************************************************************/
