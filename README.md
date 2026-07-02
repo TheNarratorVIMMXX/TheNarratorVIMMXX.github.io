@@ -40,7 +40,7 @@ Also I have experience in game development using Pygame and Arcade, applying con
     <td>
       <img src="https://skillicons.dev/icons?i=python" title="Python"/>
       <img src="https://skillicons.dev/icons?i=django" title="Django"/>
-      <img src="https://skillicons.dev/icons?i=php" title="PHP"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" width="40" height="40" alt="PHP" />    
     </td>
   </tr>
   <tr>
